@@ -1,0 +1,19 @@
+{
+  "name": "pelu-glam",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "vercel-build": "vite build"
+  },
+  "devDependencies": {
+    "vite": "^7.1.2"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.12",
+    "tailwindcss": "^4.1.12"
+  }
+}

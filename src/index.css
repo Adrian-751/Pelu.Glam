@@ -1,0 +1,453 @@
+@import "tailwindcss";
+
+/* Configuración de colores personalizados */
+:root {
+  --color-gold: #ffc100;
+  --color-dark-gold: #B8860B;
+  --color-light-gold: #FFD700;
+}
+
+/* Estilos personalizados */
+.hero-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 10;
+    will-change: transform;
+}
+
+/* Carrusel del hero */
+.hero-carousel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+/* El contenido principal */
+main {
+    position: relative;
+}
+
+/* Eliminar bordes que Bootstrap pueda agregar */
+section {
+    border: none !important;
+}
+
+.container {
+    border: none !important;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 8px;
+    border: 1px solid #B8860B;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: #B8860B;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #B8860B;
+    color: black;
+}
+
+/* .dropdown:hover .dropdown-content {
+    display: block;
+} */
+
+.dropdown.active .dropdown-content {
+    display: block;
+}
+
+/* Animacion flechas */
+.dropdown svg {
+    transition: transform 0.3s ease;
+}
+
+.dropdown.active svg {
+    transform: rotate(180deg);
+}
+
+.section {
+    scroll-margin-top: 100px;
+}
+
+/* Media query para móviles */
+
+@media (max-width: 768px) {
+    .dropdown-content {
+        right: 0;
+        left: auto;
+        min-width: 180px;
+        max-height: 250px;
+        overflow-y: auto;
+    }
+    
+    /* Personalizar el scrollbar del dropdown Técnicas */
+    .dropdown-content::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    .dropdown-content::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+    }
+    
+    .dropdown-content::-webkit-scrollbar-thumb {
+        background: #B8860B;
+        border-radius: 4px;
+    }
+    
+    .dropdown-content::-webkit-scrollbar-thumb:hover {
+        background: #B8860B;
+    }
+}
+
+/* Permitir que las clases responsive de Tailwind funcionen - resetear Bootstrap */
+h1[class*="text-"], h2[class*="text-"], h3[class*="text-"], h4[class*="text-"], h5[class*="text-"], h6[class*="text-"], p[class*="text-"] {
+    font-size: revert-layer;
+    line-height: revert-layer;
+}
+
+/* Asegurar que los colores de Tailwind tengan prioridad sobre Bootstrap */
+.text-gold {
+    background: linear-gradient(to bottom, #d0990d, #A5730C);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.9)) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7));
+}
+
+.text-white {
+    color: white !important;
+}
+
+.text-gray-300 {
+    color: rgb(209, 213, 219) !important;
+}
+
+.text-gray-400 {
+    color: rgb(156, 163, 175) !important;
+}
+
+.bg-black {
+    background-color: #000000 !important;
+}
+
+/* Fuentes personalizadas */
+[font-family="League_Spartan",sans-serif] {
+    font-family: 'League Spartan', sans-serif !important;
+}
+
+.font-great {
+    font-family: 'Great Vibes', cursive !important;
+    padding-top: 0.5rem;
+    line-height: 1.2;
+}
+
+/* Enlaces del nav */
+nav a.text-gold,
+nav span.text-gold a.text-gold {
+    background: linear-gradient(to bottom, #d0990d, #A5730C);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.9)) drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.7)) !important;
+}
+
+/* Anular las sombras del span text-gold para los enlaces del nav */
+nav span.text-gold {
+    filter: none !important;
+}
+
+nav a.text-gold:hover {
+    background: linear-gradient(to bottom, #FFD700, #FFA500) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.9)) drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.7)) !important;
+}
+
+/* Hover para span con text-gold en el nav */
+nav span.text-gold:hover a.text-gold {
+    background: linear-gradient(to bottom, #FFD700, #FFA500) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.9)) drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.7)) !important;
+}
+
+/* SVG dentro de elementos con text-gold - el degradado se aplica directamente en el SVG */
+/* Sombras para las flechas SVG del menú */
+nav .text-gold svg {
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.9)) drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.7));
+    transition: all 0.3s ease;
+}
+
+/* Hover para las flechas SVG - intensificar color con filtros */
+nav .text-gold:hover svg,
+nav span.text-gold:hover svg {
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.9)) drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.7)) brightness(1.3) saturate(1.5) !important;
+}
+
+/* Hover para modificar los gradientes SVG directamente */
+nav .text-gold:hover svg linearGradient#goldGradient stop[offset="0%"],
+nav span.text-gold:hover svg linearGradient#goldGradient stop[offset="0%"],
+nav .text-gold:hover svg linearGradient#goldGradient2 stop[offset="0%"],
+nav span.text-gold:hover svg linearGradient#goldGradient2 stop[offset="0%"] {
+    stop-color: #FFD700 !important;
+}
+
+nav .text-gold:hover svg linearGradient#goldGradient stop[offset="100%"],
+nav span.text-gold:hover svg linearGradient#goldGradient stop[offset="100%"],
+nav .text-gold:hover svg linearGradient#goldGradient2 stop[offset="100%"],
+nav span.text-gold:hover svg linearGradient#goldGradient2 stop[offset="100%"] {
+    stop-color: #FFA600 !important;
+}
+
+/* Eliminar sombras de texto dorado en el footer */
+footer .text-gold,
+footer a.text-gold,
+footer h3.text-gold {
+    filter: none !important;
+}
+
+/* Efecto hover para enlaces del footer - color más intenso */
+footer a.text-gold:hover {
+    background: linear-gradient(to bottom, #FFD700, #FFA500) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+    filter: none !important;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+/* Asegurar que los títulos de secciones principales tengan el mismo estilo */
+#tecnica h2,
+#servicios h2,
+#desayunos-meriendas h2 {
+    font-size: 1.5rem !important;
+    line-height: 2rem !important;
+}
+
+@media (min-width: 768px) {
+    #tecnica h2,
+    #servicios h2,
+    #desayunos-meriendas h2 {
+        font-size: 1.875rem !important;
+        line-height: 2.25rem !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    #tecnica h2,
+    #servicios h2,
+    #desayunos-meriendas h2 {
+        font-size: 2.25rem !important;
+        line-height: 2.5rem !important;
+    }
+}
+
+/* Galería de Desayunos y Meriendas - Efecto de opacidad automático secuencial */
+.galeria-desayunos {
+    overflow: hidden;
+}
+
+.galeria-desayunos .foto-galeria {
+    overflow: hidden;
+    aspect-ratio: 1;
+}
+
+/* Animación que dura el ciclo completo: 14.4s (12 imágenes × 1.2s cada una) */
+/* Cada imagen se anima solo en su ventana de tiempo específica */
+@keyframes opacidad-automatica-1 {
+    0% { opacity: 0.7; }
+    4.16% { opacity: 1; }
+    8.33% { opacity: 0.7; }
+    100% { opacity: 0.7; }
+}
+
+@keyframes opacidad-automatica-2 {
+    0% { opacity: 0.7; }
+    8.33% { opacity: 0.7; }
+    12.5% { opacity: 1; }
+    16.66% { opacity: 0.7; }
+    100% { opacity: 0.7; }
+}
+
+@keyframes opacidad-automatica-3 {
+    0% { opacity: 0.7; }
+    16.66% { opacity: 0.7; }
+    20.83% { opacity: 1; }
+    25% { opacity: 0.7; }
+    100% { opacity: 0.7; }
+}
+
+@keyframes opacidad-automatica-4 {
+    0% { opacity: 0.7; }
+    25% { opacity: 0.7; }
+    29.16% { opacity: 1; }
+    33.33% { opacity: 0.7; }
+    100% { opacity: 0.7; }
+}
+
+@keyframes opacidad-automatica-5 {
+    0% { opacity: 0.7; }
+    33.33% { opacity: 0.7; }
+    37.5% { opacity: 1; }
+    41.66% { opacity: 0.7; }
+    100% { opacity: 0.7; }
+}
+
+@keyframes opacidad-automatica-6 {
+    0% { opacity: 0.7; }
+    41.66% { opacity: 0.7; }
+    45.83% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 0.7; }
+}
+
+@keyframes opacidad-automatica-7 {
+    0% { opacity: 0.7; }
+    50% { opacity: 0.7; }
+    54.16% { opacity: 1; }
+    58.33% { opacity: 0.7; }
+    100% { opacity: 0.7; }
+}
+
+@keyframes opacidad-automatica-8 {
+    0% { opacity: 0.7; }
+    58.33% { opacity: 0.7; }
+    62.5% { opacity: 1; }
+    66.66% { opacity: 0.7; }
+    100% { opacity: 0.7; }
+}
+
+@keyframes opacidad-automatica-9 {
+    0% { opacity: 0.7; }
+    66.66% { opacity: 0.7; }
+    70.83% { opacity: 1; }
+    75% { opacity: 0.7; }
+    100% { opacity: 0.7; }
+}
+
+@keyframes opacidad-automatica-10 {
+    0% { opacity: 0.7; }
+    75% { opacity: 0.7; }
+    79.16% { opacity: 1; }
+    83.33% { opacity: 0.7; }
+    100% { opacity: 0.7; }
+}
+
+@keyframes opacidad-automatica-11 {
+    0% { opacity: 0.7; }
+    83.33% { opacity: 0.7; }
+    87.5% { opacity: 1; }
+    91.66% { opacity: 0.7; }
+    100% { opacity: 0.7; }
+}
+
+@keyframes opacidad-automatica-12 {
+    0% { opacity: 0.7; }
+    91.66% { opacity: 0.7; }
+    95.83% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
+
+.galeria-desayunos .foto-galeria img {
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+    opacity: 0.7;
+    animation: opacidad-automatica-1 14.4s ease infinite;
+}
+
+.galeria-desayunos .foto-galeria:nth-child(1) img {
+    animation-name: opacidad-automatica-1;
+}
+
+.galeria-desayunos .foto-galeria:nth-child(2) img {
+    animation-name: opacidad-automatica-2;
+}
+
+.galeria-desayunos .foto-galeria:nth-child(3) img {
+    animation-name: opacidad-automatica-3;
+}
+
+.galeria-desayunos .foto-galeria:nth-child(4) img {
+    animation-name: opacidad-automatica-4;
+}
+
+.galeria-desayunos .foto-galeria:nth-child(5) img {
+    animation-name: opacidad-automatica-5;
+}
+
+.galeria-desayunos .foto-galeria:nth-child(6) img {
+    animation-name: opacidad-automatica-6;
+}
+
+.galeria-desayunos .foto-galeria:nth-child(7) img {
+    animation-name: opacidad-automatica-7;
+}
+
+.galeria-desayunos .foto-galeria:nth-child(8) img {
+    animation-name: opacidad-automatica-8;
+}
+
+.galeria-desayunos .foto-galeria:nth-child(9) img {
+    animation-name: opacidad-automatica-9;
+}
+
+.galeria-desayunos .foto-galeria:nth-child(10) img {
+    animation-name: opacidad-automatica-10;
+}
+
+.galeria-desayunos .foto-galeria:nth-child(11) img {
+    animation-name: opacidad-automatica-11;
+}
+
+.galeria-desayunos .foto-galeria:nth-child(12) img {
+    animation-name: opacidad-automatica-12;
+}
