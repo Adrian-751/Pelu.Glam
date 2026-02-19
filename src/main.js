@@ -146,3 +146,24 @@ document.querySelectorAll('.dropdown-content a').forEach(link => {
         }
     });
 });
+
+// Mobile nav (<details class="mobile-nav">): cerrar al navegar, al tocar afuera o con ESC
+const mobileNav = document.querySelector('details.mobile-nav');
+if (mobileNav) {
+    const closeMobileNav = () => {
+        mobileNav.removeAttribute('open');
+        mobileNav.querySelectorAll('details[open]').forEach(d => d.removeAttribute('open'));
+    };
+
+    mobileNav.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => closeMobileNav());
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMobileNav();
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!mobileNav.contains(e.target)) closeMobileNav();
+    });
+}
