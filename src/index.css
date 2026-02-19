@@ -282,6 +282,16 @@ nav details[open] > summary.text-gold {
     filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.9)) drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.7)) !important;
 }
 
+/* Hamburguesa (mobile): misma sombra que los textos del nav */
+.mobile-nav summary svg.mobile-hamburger {
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.9)) drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.7));
+    transition: filter 0.3s ease;
+}
+
+.mobile-nav summary:hover svg.mobile-hamburger {
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.9)) drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.7)) brightness(1.3) saturate(1.5);
+}
+
 /* Anular las sombras del span text-gold para los enlaces del nav */
 nav span.text-gold {
     filter: none !important;
