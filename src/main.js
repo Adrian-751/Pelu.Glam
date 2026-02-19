@@ -151,12 +151,34 @@ document.querySelectorAll('.dropdown-content a').forEach(link => {
 const mobileNav = document.querySelector('details.mobile-nav');
 if (mobileNav) {
     const closeMobileNav = () => {
+        // Cerrar submenús primero para que no queden "pegados" al reabrir
+        mobileNav.querySelectorAll('.mobile-nav-panel details[open]').forEach(d => d.removeAttribute('open'));
         mobileNav.removeAttribute('open');
-        mobileNav.querySelectorAll('details[open]').forEach(d => d.removeAttribute('open'));
     };
 
     mobileNav.querySelectorAll('a').forEach(a => {
         a.addEventListener('click', () => closeMobileNav());
+    });
+
+    // Al abrir/cerrar el menú: resetear submenús (evita que Técnicas/Servicios queden abiertos al volver)
+    mobileNav.addEventListener('toggle', () => {
+        if (!mobileNav.hasAttribute('open')) {
+            mobileNav.querySelectorAll('.mobile-nav-panel details[open]').forEach(d => d.removeAttribute('open'));
+        } else {
+            // Al abrir, también arrancar "limpio"
+            mobileNav.querySelectorAll('.mobile-nav-panel details[open]').forEach(d => d.removeAttribute('open'));
+        }
+    });
+
+    // Exclusividad: si abrís Técnicas, se cierra Servicios (y viceversa)
+    const mobileSubMenus = Array.from(mobileNav.querySelectorAll('.mobile-nav-panel > details'));
+    mobileSubMenus.forEach((menu) => {
+        menu.addEventListener('toggle', () => {
+            if (!menu.hasAttribute('open')) return;
+            mobileSubMenus.forEach((other) => {
+                if (other !== menu) other.removeAttribute('open');
+            });
+        });
     });
 
     document.addEventListener('keydown', (e) => {
