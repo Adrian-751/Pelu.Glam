@@ -51,6 +51,53 @@ try {
     // ignore
 }
 
+// Bootstrap carousels: reproducir SOLO el video del slide activo (evita bugs en Safari/iOS)
+function initCarouselVideos() {
+    const carousels = document.querySelectorAll('.carousel')
+    if (!carousels.length) return
+
+    const pauseAll = (root) => {
+        root.querySelectorAll('video').forEach((v) => {
+            try {
+                v.pause()
+            } catch { /* ignore */ }
+        })
+    }
+
+    const playActive = (root) => {
+        const activeVideo = root.querySelector('.carousel-item.active video')
+        if (!activeVideo) return
+        try {
+            // Reforzar flags necesarios para autoplay programático en mobile
+            activeVideo.muted = true
+            activeVideo.playsInline = true
+            // Intentar reproducir (si el navegador lo bloquea, no rompemos la UI)
+            const p = activeVideo.play?.()
+            if (p && typeof p.catch === 'function') p.catch(() => { })
+        } catch {
+            // ignore
+        }
+    }
+
+    const sync = (root) => {
+        pauseAll(root)
+        playActive(root)
+    }
+
+    carousels.forEach((c) => {
+        // Estado inicial
+        sync(c)
+        // Cuando el carrusel termina de deslizar, sincronizar
+        c.addEventListener('slid.bs.carousel', () => sync(c))
+    })
+}
+
+try {
+    initCarouselVideos()
+} catch {
+    // ignore
+}
+
 // Efecto Parallax en el header
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
