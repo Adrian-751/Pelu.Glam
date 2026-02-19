@@ -10,21 +10,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Great+Vibes&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./src/index.css">
+    <!-- Performance: precargar la primera imagen del hero -->
+    <link rel="preload" as="image" href="./img/portada.jpg">
 </head>
 <body class="bg-black text-white">
     <!-- Header -->
     <header class="hero-bg min-h-screen flex flex-col justify-center items-center relative">
         <!-- Carrusel de imágenes -->
         <div class="hero-carousel absolute inset-0 w-full h-full">
-            <div class="carousel-slide active" style="background-image: url('/img/portada.jpg'); background-position: center 40%;"></div>
-            <div class="carousel-slide" style="background-image: url('/img/producto.jpg'); background-position: center 48%;"></div>
-            <div class="carousel-slide" style="background-image: url('/img/peinado1.jpg'); background-position: center;"></div>
-            <div class="carousel-slide" style="background-image: url('/img/portada1.jpg'); background-position: center;"></div>
-            <div class="carousel-slide" style="background-image: url('/img/productos.jpg'); background-position: center 80%;"></div>
-            <div class="carousel-slide" style="background-image: url('/img/portada2.jpg'); background-position: center 63%;"></div>
-            <div class="carousel-slide" style="background-image: url('/img/producto2.jpg'); background-position: center 60%;"></div>
-            <div class="carousel-slide" style="background-image: url('/img/portada3.jpg'); background-position: center 40%;"></div>
-            <div class="carousel-slide" style="background-image: url('/img/portada4.jpg'); background-position: center 30%;"></div>
+            <!-- IMPORTANT: usamos data-bg para NO descargar todas las imágenes del hero al abrir la página -->
+            <div class="carousel-slide active" data-bg="./img/portada.jpg" style="background-position: center 40%;"></div>
+            <div class="carousel-slide" data-bg="./img/producto.jpg" style="background-position: center 48%;"></div>
+            <div class="carousel-slide" data-bg="./img/peinado1.jpg" style="background-position: center;"></div>
+            <div class="carousel-slide" data-bg="./img/portada1.jpg" style="background-position: center;"></div>
+            <div class="carousel-slide" data-bg="./img/productos.jpg" style="background-position: center 80%;"></div>
+            <div class="carousel-slide" data-bg="./img/portada2.jpg" style="background-position: center 63%;"></div>
+            <div class="carousel-slide" data-bg="./img/producto2.jpg" style="background-position: center 60%;"></div>
+            <div class="carousel-slide" data-bg="./img/portada3.jpg" style="background-position: center 40%;"></div>
+            <div class="carousel-slide" data-bg="./img/portada4.jpg" style="background-position: center 30%;"></div>
         </div>
         
         <div class="text-center z-10">
@@ -184,7 +187,7 @@
                                         <img src="/img/ombre2.jpg" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" style="object-position: center 80%;" alt="Ombré">
                                     </div>
                                     <div class="carousel-item">
-                                        <video src="/img/ombre.mp4" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" style="object-position: center 80%;" autoplay muted loop playsinline></video>
+                                        <video src="./img/ombre.mp4" preload="none" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" style="object-position: center 80%;" autoplay muted loop playsinline></video>
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carousel-ombre" data-bs-slide="prev">
@@ -480,22 +483,19 @@
                             <div id="carousel-reflejos" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="/img/refcgorro.jpg" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" alt="Reflejos">
+                                        <img src="./img/refcgorro.jpg" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" alt="Reflejos">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="/img/refcgorro1.jpg" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" style="object-position: center 30%;" alt="Reflejos">
+                                        <img src="./img/refcgorro1.jpg" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" style="object-position: center 30%;" alt="Reflejos">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="/img/refcgorro2.jpg" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" style="object-position: center 80%;" alt="Reflejos">
+                                        <img src="./img/refcgorro2.jpg" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" style="object-position: center 80%;" alt="Reflejos">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="/img/refcgorro1.png" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" style="object-position: center 30%;" alt="Reflejos">
+                                        <img src="./img/refcgorro3.jpg" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" style="object-position: center 60%;" alt="Reflejos">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="/img/refcgorro3.jpg" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" style="object-position: center 60%;" alt="Reflejos">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="/img/refcgorro4.jpg" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" style="object-position: center 36.5%;" alt="Reflejos">
+                                        <img src="./img/refcgorro4.jpg" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" style="object-position: center 36.5%;" alt="Reflejos">
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carousel-reflejos" data-bs-slide="prev">
@@ -602,7 +602,7 @@
                                         <img src="/img/peinado3.jpg" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" style="object-position: center 35%;" alt="Peinados">
                                     </div>
                                     <div class="carousel-item">
-                                        <video src="/img/peinado.mp4" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" autoplay muted loop playsinline></video>
+                                        <video src="./img/peinado.mp4" preload="none" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" autoplay muted loop playsinline></video>
                                     </div>
                                     <div class="carousel-item">
                                         <img src="/img/peinado4.jpg" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" style="object-position: center 35%;" alt="Peinados">
@@ -617,7 +617,7 @@
                                         <img src="/img/peinado7.jpg" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" style="object-position: center 100%;" alt="Peinados">
                                     </div>
                                     <div class="carousel-item">
-                                        <video src="/img/peinado1.mp4" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" style="object-position: center 55%;" autoplay muted loop playsinline></video>
+                                        <video src="./img/peinado1.mp4" preload="none" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" style="object-position: center 55%;" autoplay muted loop playsinline></video>
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carousel-nutriciones" data-bs-slide="prev">
@@ -664,7 +664,7 @@
                                         <img src="/img/nutricion1.jpg" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" style="object-position: center 75%;" alt="Nutriciones">
                                     </div>
                                     <div class="carousel-item">
-                                        <video src="/img/nutricion.mp4" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" autoplay muted loop playsinline></video>
+                                        <video src="./img/nutricion.mp4" preload="none" class="w-100 rounded-lg shadow-2xl max-h-96 object-cover" autoplay muted loop playsinline></video>
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carousel-nutriciones" data-bs-slide="prev">

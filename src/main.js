@@ -3,11 +3,23 @@ let currentSlide = 0;
 const slides = document.querySelectorAll('.carousel-slide');
 const totalSlides = slides.length;
 
+function ensureSlideBg(slide) {
+    if (!slide) return
+    // Evitar re-setear si ya está cargada
+    if (slide.dataset?.bgLoaded === '1') return
+    const bg = slide.getAttribute('data-bg')
+    if (!bg) return
+    slide.style.backgroundImage = `url('${bg}')`
+    slide.dataset.bgLoaded = '1'
+}
+
 function showSlide(index) {
     slides.forEach((slide, i) => {
         slide.classList.remove('active');
         if (i === index) {
             slide.classList.add('active');
+            // Cargar el fondo solo cuando se necesita (mejora enorme de performance)
+            ensureSlideBg(slide)
         }
     });
 }
@@ -19,7 +31,24 @@ function nextSlide() {
 
 // Iniciar el carrusel automático (cambia cada 5 segundos)
 if (totalSlides > 0) {
+    // Cargar el primer slide apenas arranca
+    ensureSlideBg(slides[0])
     setInterval(nextSlide, 3000);
+}
+
+// Lazy-load para imágenes y videos fuera de pantalla
+// - img: loading=lazy + decoding=async
+// - video: preload=none (evita descargar MBs al abrir)
+try {
+    document.querySelectorAll('img').forEach((img) => {
+        if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy')
+        if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async')
+    })
+    document.querySelectorAll('video').forEach((v) => {
+        if (!v.hasAttribute('preload')) v.setAttribute('preload', 'none')
+    })
+} catch {
+    // ignore
 }
 
 // Efecto Parallax en el header
