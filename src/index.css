@@ -109,6 +109,47 @@ section {
     transform: rotate(180deg);
 }
 
+/* Nav: igualar altura/alineación de items (Acerca de / Técnicas / Servicios / Por turnos) */
+nav .nav-links > a,
+nav .nav-links > .dropdown > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    height: 24px;
+}
+nav .nav-links > .dropdown {
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Subrayado solo para los labels del nav que vos querés (Tecnicas / Servicios) */
+nav .nav-links a.nav-underline {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: #B8860B;
+}
+
+/* Nav mobile: todo en una sola línea, sin scroll, achicando fuente/espaciado */
+@media (max-width: 480px) {
+    nav .nav-links {
+        font-size: 11px;
+        line-height: 1;
+    }
+    nav .nav-links a {
+        white-space: nowrap;
+        padding: 0 2px;
+    }
+    nav .nav-links > a,
+    nav .nav-links > .dropdown > span {
+        height: 20px;
+    }
+    nav .nav-links svg.icon-tabler {
+        width: 18px;
+        height: 18px;
+    }
+}
+
 .section {
     scroll-margin-top: 100px;
 }
